@@ -7,7 +7,13 @@ const port = process.env.PORT || 5000;
 
 // middleware
 const corsOptions = {
-  origin: ['http://localhost:5173'],
+  origin: [
+    'http://localhost:5173',
+
+  // 'https://b9a11-fitness-client-2c51c.web.app',
+  // 'https://b9a11-fitness-client-2c51c.firebaseapp.com'
+
+  ],
   credentials: true,
   optionalSuccessStatus: 200,
 }
@@ -39,6 +45,11 @@ async function run() {
       const result = await cursor.toArray();
       res.send(result);
     })
+    // app.get('/booked', async (req, res) => {
+    //   const cursor = bookedCollection.find();
+    //   const result = await cursor.toArray();
+    //   res.send(result);
+    // })
 
 
     app.post('/services', async (req, res) => {
