@@ -45,6 +45,19 @@ async function run() {
       const result = await cursor.toArray();
       res.send(result);
     })
+// search option ___>
+app.get('/search', async (req, res) => {
+  const search=req.query.search 
+  let query = {
+    service_name:{$regex:search,$options:'i'},
+  }
+  const result = await serviceCollection.find(query).toArray();
+  res.send(result);
+})
+
+
+
+
     // app.get('/booked', async (req, res) => {
     //   const cursor = bookedCollection.find();
     //   const result = await cursor.toArray();
