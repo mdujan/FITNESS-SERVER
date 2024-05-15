@@ -46,7 +46,7 @@ async function run() {
       res.send(result);
     })
 // search option ___>
-app.get('/search', async (req, res) => {
+app.get('/ ', async (req, res) => {
   const search=req.query.search 
   let query = {
     service_name:{$regex:search,$options:'i'},
