@@ -38,6 +38,7 @@ async function run() {
 
     const serviceCollection = client.db('fitnessDB').collection('services')
     const bookedCollection = client.db('fitnessDB').collection('booked')
+    const feedbackCollection = client.db('fitnessDB').collection('feedback')
 
 
     app.get('/services', async (req, res) => {
@@ -70,6 +71,19 @@ app.get('/search', async (req, res) => {
       console.log(newItem);
       const result = await serviceCollection.insertOne(newItem);
       res.send(result)
+    })
+    // feedback:-->
+    app.post('/feedback', async (req, res) => {
+      const newItem = req.body;
+      console.log(newItem);
+      const result = await feedbackCollection.insertOne(newItem);
+      res.send(result)
+    })
+// feedbacks get:---> 
+    app.get('/feedback', async (req, res) => {
+      const cursor = feedbackCollection.find();
+      const result = await cursor.toArray();
+      res.send(result);
     })
 
 
